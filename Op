@@ -1,0 +1,338 @@
+function OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn(code)res=''for i in ipairs(code)do res=res..string.char(code[i]/105)end return res end 
+
+
+local Players = game:GetService(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8400,11340,10185,12705,10605,11970,12075}))
+local RunService = game:GetService(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8610,12285,11550,8715,10605,11970,12390,11025,10395,10605}))
+local LocalPlayer = Players.LocalPlayer
+
+local screenGui = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8715,10395,11970,10605,10605,11550,7455,12285,11025}))
+screenGui.Name = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11025,12600,7560,12285,10290,7455,12285,11025})
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.IgnoreGuiInset = true
+screenGui.Parent = game.CoreGui
+
+local savedBtnPos = UDim2.new(1, -60, 0, 100)
+local savedFramePos = UDim2.new(1, -255, 0, 100)
+
+local mainBtn = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+mainBtn.Name = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8085,10185,11025,11550,6930,12180,11550})
+mainBtn.Size = UDim2.new(0, 55, 0, 55)
+mainBtn.Position = savedBtnPos
+mainBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+mainBtn.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({25200,16695,15540,13860})
+mainBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+mainBtn.TextSize = 30
+mainBtn.Font = Enum.Font.GothamBlack
+mainBtn.AutoButtonColor = false
+mainBtn.ZIndex = 50
+mainBtn.Active = true
+mainBtn.Parent = screenGui
+
+local mainBtnCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+mainBtnCorner.CornerRadius = UDim.new(1, 0)
+mainBtnCorner.Parent = mainBtn
+
+local mainBtnStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+mainBtnStroke.Color = Color3.fromRGB(80, 160, 255)
+mainBtnStroke.Thickness = 2
+mainBtnStroke.Transparency = 0.2
+mainBtnStroke.Parent = mainBtn
+
+local mainFrame = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605}))
+mainFrame.Name = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8085,10185,11025,11550,7350,11970,10185,11445,10605})
+mainFrame.Size = UDim2.new(0, 240, 0, 340)
+mainFrame.Position = savedFramePos
+mainFrame.BackgroundColor3 = Color3.fromRGB(8, 12, 25)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Visible = false
+mainFrame.ClipsDescendants = true
+mainFrame.ZIndex = 10
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+mainCorner.CornerRadius = UDim.new(0, 12)
+mainCorner.Parent = mainFrame
+
+local mainGradient = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7455,11970,10185,10500,11025,10605,11550,12180}))
+mainGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(15, 25, 50)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(5, 8, 15)),
+}
+mainGradient.Rotation = 45
+mainGradient.Parent = mainFrame
+
+local mainStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+mainStroke.Color = Color3.fromRGB(80, 160, 255)
+mainStroke.Thickness = 2
+mainStroke.Transparency = 0.2
+mainStroke.Parent = mainFrame
+
+local titleBar = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605}))
+titleBar.Size = UDim2.new(1, 0, 0, 36)
+titleBar.BackgroundColor3 = Color3.fromRGB(15, 30, 60)
+titleBar.BorderSizePixel = 0
+titleBar.ZIndex = 11
+titleBar.Parent = mainFrame
+
+local titleCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+titleCorner.CornerRadius = UDim.new(0, 12)
+titleCorner.Parent = titleBar
+
+local titleCover = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605}))
+titleCover.Size = UDim2.new(1, 0, 0, 14)
+titleCover.Position = UDim2.new(0, 0, 1, -14)
+titleCover.BackgroundColor3 = Color3.fromRGB(15, 30, 60)
+titleCover.BorderSizePixel = 0
+titleCover.ZIndex = 11
+titleCover.Parent = titleBar
+
+local titleIcon = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,7980,10185,10290,10605,11340}))
+titleIcon.Size = UDim2.new(0, 24, 0, 24)
+titleIcon.Position = UDim2.new(0, 8, 0.5, -12)
+titleIcon.BackgroundTransparency = 1
+titleIcon.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({25200,16695,15540,13860})
+titleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleIcon.TextSize = 20
+titleIcon.Font = Enum.Font.GothamBlack
+titleIcon.ZIndex = 13
+titleIcon.Parent = titleBar
+
+local titleLabel = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,7980,10185,10290,10605,11340}))
+titleLabel.Size = UDim2.new(1, -70, 1, 0)
+titleLabel.Position = UDim2.new(0, 38, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,7665,9240,3360,7560,8925,6930})
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextSize = 13
+titleLabel.Font = Enum.Font.GothamBlack
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.ZIndex = 12
+titleLabel.Parent = titleBar
+
+local closeBtn = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+closeBtn.Size = UDim2.new(0, 24, 0, 24)
+closeBtn.Position = UDim2.new(1, -30, 0.5, -12)
+closeBtn.BackgroundColor3 = Color3.fromRGB(220, 40, 40)
+closeBtn.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({9240})
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.TextSize = 13
+closeBtn.Font = Enum.Font.GothamBlack
+closeBtn.BorderSizePixel = 0
+closeBtn.ZIndex = 13
+closeBtn.Parent = titleBar
+
+local closeCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = closeBtn
+
+local statusLabel = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,7980,10185,10290,10605,11340}))
+statusLabel.Size = UDim2.new(1, -24, 0, 18)
+statusLabel.Position = UDim2.new(0, 12, 0, 42)
+statusLabel.BackgroundTransparency = 1
+statusLabel.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({23730,15855,15015,3360,8400,11970,11655,11550,12180,11655})
+statusLabel.TextColor3 = Color3.fromRGB(150, 220, 150)
+statusLabel.TextSize = 11
+statusLabel.Font = Enum.Font.GothamBold
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+statusLabel.ZIndex = 12
+statusLabel.Parent = mainFrame
+
+local listFrame = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605}))
+listFrame.Size = UDim2.new(1, -24, 0, 175)
+listFrame.Position = UDim2.new(0, 12, 0, 66)
+listFrame.BackgroundColor3 = Color3.fromRGB(12, 18, 35)
+listFrame.BorderSizePixel = 0
+listFrame.ZIndex = 12
+listFrame.Parent = mainFrame
+
+local listCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+listCorner.CornerRadius = UDim.new(0, 8)
+listCorner.Parent = listFrame
+
+local listStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+listStroke.Color = Color3.fromRGB(40, 70, 130)
+listStroke.Thickness = 1
+listStroke.Transparency = 0.4
+listStroke.Parent = listFrame
+
+local scroll = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8715,10395,11970,11655,11340,11340,11025,11550,10815,7350,11970,10185,11445,10605}))
+scroll.Size = UDim2.new(1, -8, 1, -8)
+scroll.Position = UDim2.new(0, 4, 0, 4)
+scroll.BackgroundTransparency = 1
+scroll.BorderSizePixel = 0
+scroll.ScrollBarThickness = 4
+scroll.ScrollBarImageColor3 = Color3.fromRGB(80, 160, 255)
+scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scroll.ZIndex = 13
+scroll.Parent = listFrame
+
+local listLayout = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7980,11025,12075,12180,7980,10185,12705,11655,12285,12180}))
+listLayout.Padding = UDim.new(0, 4)
+listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+listLayout.Parent = scroll
+
+local selectAllBtn = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+selectAllBtn.Size = UDim2.new(0, 105, 0, 26)
+selectAllBtn.Position = UDim2.new(0, 12, 0, 249)
+selectAllBtn.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+selectAllBtn.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8715,7245,7980,7245,7035,8820,3360,6825,7980,7980})
+selectAllBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+selectAllBtn.TextSize = 10
+selectAllBtn.Font = Enum.Font.GothamBlack
+selectAllBtn.BorderSizePixel = 0
+selectAllBtn.ZIndex = 12
+selectAllBtn.Parent = mainFrame
+
+local selectAllCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+selectAllCorner.CornerRadius = UDim.new(0, 6)
+selectAllCorner.Parent = selectAllBtn
+
+local deselectAllBtn = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+deselectAllBtn.Size = UDim2.new(0, 105, 0, 26)
+deselectAllBtn.Position = UDim2.new(1, -117, 0, 249)
+deselectAllBtn.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+deselectAllBtn.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7140,7245,8715,7245,7980,7245,7035,8820})
+deselectAllBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+deselectAllBtn.TextSize = 10
+deselectAllBtn.Font = Enum.Font.GothamBlack
+deselectAllBtn.BorderSizePixel = 0
+deselectAllBtn.ZIndex = 12
+deselectAllBtn.Parent = mainFrame
+
+local deselectAllCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+deselectAllCorner.CornerRadius = UDim.new(0, 6)
+deselectAllCorner.Parent = deselectAllBtn
+
+local toggleBtn = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+toggleBtn.Size = UDim2.new(1, -24, 0, 42)
+toggleBtn.Position = UDim2.new(0, 12, 0, 284)
+toggleBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+toggleBtn.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,7980,7665,8190,7455,6090,3360,8295,7350,7350})
+toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleBtn.TextSize = 15
+toggleBtn.Font = Enum.Font.GothamBlack
+toggleBtn.BorderSizePixel = 0
+toggleBtn.ZIndex = 12
+toggleBtn.Parent = mainFrame
+
+local toggleCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+toggleCorner.CornerRadius = UDim.new(0, 8)
+toggleCorner.Parent = toggleBtn
+
+local toggleStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+toggleStroke.Color = Color3.fromRGB(255, 100, 100)
+toggleStroke.Thickness = 1.5
+toggleStroke.Transparency = 0.3
+toggleStroke.Parent = toggleBtn
+
+local SelectedTargets = {}
+local PlayerCheckboxes = {}
+local FlingActive = false
+getgenv().OldPos = nil
+getgenv().FPDH = workspace.FallenPartsDestroyHeight
+
+local function setStatus(text, color)
+    statusLabel.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({23730,15855,15015,3360}) .. text
+    statusLabel.TextColor3 = color or Color3.fromRGB(150, 220, 150)
+end
+
+local function RefreshPlayerList()
+    for _, child in pairs(scroll:GetChildren()) do
+        if child:IsA(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605})) then
+            child:Destroy()
+        end
+    end
+    PlayerCheckboxes = {}
+
+    local PlayerList = Players:GetPlayers()
+    table.sort(PlayerList, function(a, b) return a.Name:lower() < b.Name:lower() end)
+
+    local yPos = 0
+    for _, player in ipairs(PlayerList) do
+        if player ~= LocalPlayer then
+            local entry = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7350,11970,10185,11445,10605}))
+            entry.Size = UDim2.new(1, -4, 0, 36)
+            entry.Position = UDim2.new(0, 0, 0, yPos)
+            entry.BackgroundColor3 = Color3.fromRGB(20, 30, 55)
+            entry.BorderSizePixel = 0
+            entry.ZIndex = 13
+            entry.Parent = scroll
+
+            local entryCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+            entryCorner.CornerRadius = UDim.new(0, 6)
+            entryCorner.Parent = entry
+
+            local avatar = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({7665,11445,10185,10815,10605,7980,10185,10290,10605,11340}))
+            avatar.Size = UDim2.new(0, 28, 0, 28)
+            avatar.Position = UDim2.new(0, 4, 0.5, -14)
+            avatar.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+            avatar.BorderSizePixel = 0
+            avatar.Image = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({11970,10290,12600,12180,10920,12285,11445,10290,6090,4935,4935,12180,12705,11760,10605,6405,6825,12390,10185,12180,10185,11970,7560,10605,10185,10500,8715,10920,11655,12180,3990,11025,10500,6405}) .. player.UserId .. OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({3990,12495,6405,5145,5565,5040,3990,10920,6405,5145,5565,5040})
+            avatar.ZIndex = 14
+            avatar.Parent = entry
+
+            local avatarCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+            avatarCorner.CornerRadius = UDim.new(1, 0)
+            avatarCorner.Parent = avatar
+
+            local avatarStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+            avatarStroke.Color = Color3.fromRGB(80, 160, 255)
+            avatarStroke.Thickness = 1
+            avatarStroke.Parent = avatar
+
+            local nameLabel = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,7980,10185,10290,10605,11340}))
+            nameLabel.Size = UDim2.new(1, -75, 1, 0)
+            nameLabel.Position = UDim2.new(0, 38, 0, 0)
+            nameLabel.BackgroundTransparency = 1
+            nameLabel.Text = player.Name
+            nameLabel.TextColor3 = Color3.fromRGB(230, 230, 230)
+            nameLabel.TextSize = 11
+            nameLabel.Font = Enum.Font.GothamSemibold
+            nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+            nameLabel.TextTruncate = Enum.TextTruncate.AtEnd
+            nameLabel.ZIndex = 14
+            nameLabel.Parent = entry
+
+            local checkbox = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+            checkbox.Size = UDim2.new(0, 22, 0, 22)
+            checkbox.Position = UDim2.new(1, -26, 0.5, -11)
+            checkbox.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+            checkbox.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({})
+            checkbox.BorderSizePixel = 0
+            checkbox.ZIndex = 14
+            checkbox.Parent = entry
+
+            local cbCorner = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,7035,11655,11970,11550,10605,11970}))
+            cbCorner.CornerRadius = UDim.new(0, 5)
+            cbCorner.Parent = checkbox
+
+            local cbStroke = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8925,7665,8715,12180,11970,11655,11235,10605}))
+            cbStroke.Color = Color3.fromRGB(80, 160, 255)
+            cbStroke.Thickness = 1
+            cbStroke.Parent = checkbox
+
+            local checkmark = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,7980,10185,10290,10605,11340}))
+            checkmark.Size = UDim2.new(1, 0, 1, 0)
+            checkmark.BackgroundTransparency = 1
+            checkmark.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({23730,16380,15435})
+            checkmark.TextColor3 = Color3.fromRGB(80, 200, 255)
+            checkmark.TextSize = 16
+            checkmark.Font = Enum.Font.GothamBlack
+            checkmark.Visible = SelectedTargets[player.Name] ~= nil
+            checkmark.ZIndex = 15
+            checkmark.Parent = checkbox
+
+            local clickArea = Instance.new(OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({8820,10605,12600,12180,6930,12285,12180,12180,11655,11550}))
+            clickArea.Size = UDim2.new(1, 0, 1, 0)
+            clickArea.BackgroundTransparency = 1
+            clickArea.Text = OJsvsCFYSvzDHTvoshBFLtpWFfAjMSVNRdMHEdEDNEWloAmjophapfZgZLpKZCqEGWYDpEOQkRiBriDeuQImtlUyxmKwhvPMn({})
+            clickArea.ZIndex = 16
+            clickArea.Parent = entry
+
+            clickArea.MouseButton1Click:Connect(function()
+                if SelectedTargets[player.Name] then
+                    SelectedTargets[pla
