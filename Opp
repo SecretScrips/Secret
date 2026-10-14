@@ -1,0 +1,550 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "FixHubGui"
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.IgnoreGuiInset = true
+screenGui.Parent = game.CoreGui
+
+local savedBtnPos = UDim2.new(1, -60, 0, 100)
+local savedFramePos = UDim2.new(1, -255, 0, 100)
+
+local mainBtn = Instance.new("TextButton")
+mainBtn.Name = "MainBtn"
+mainBtn.Size = UDim2.new(0, 55, 0, 55)
+mainBtn.Position = savedBtnPos
+mainBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+mainBtn.Text = "🔄"
+mainBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+mainBtn.TextSize = 30
+mainBtn.Font = Enum.Font.GothamBlack
+mainBtn.AutoButtonColor = false
+mainBtn.ZIndex = 50
+mainBtn.Active = true
+mainBtn.Parent = screenGui
+
+local mainBtnCorner = Instance.new("UICorner")
+mainBtnCorner.CornerRadius = UDim.new(1, 0)
+mainBtnCorner.Parent = mainBtn
+
+local mainBtnStroke = Instance.new("UIStroke")
+mainBtnStroke.Color = Color3.fromRGB(80, 160, 255)
+mainBtnStroke.Thickness = 2
+mainBtnStroke.Transparency = 0.2
+mainBtnStroke.Parent = mainBtn
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 240, 0, 340)
+mainFrame.Position = savedFramePos
+mainFrame.BackgroundColor3 = Color3.fromRGB(8, 12, 25)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Visible = false
+mainFrame.ClipsDescendants = true
+mainFrame.ZIndex = 10
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 12)
+mainCorner.Parent = mainFrame
+
+local mainGradient = Instance.new("UIGradient")
+mainGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(15, 25, 50)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(5, 8, 15)),
+}
+mainGradient.Rotation = 45
+mainGradient.Parent = mainFrame
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = Color3.fromRGB(80, 160, 255)
+mainStroke.Thickness = 2
+mainStroke.Transparency = 0.2
+mainStroke.Parent = mainFrame
+
+local titleBar = Instance.new("Frame")
+titleBar.Size = UDim2.new(1, 0, 0, 36)
+titleBar.BackgroundColor3 = Color3.fromRGB(15, 30, 60)
+titleBar.BorderSizePixel = 0
+titleBar.ZIndex = 11
+titleBar.Parent = mainFrame
+
+local titleCorner = Instance.new("UICorner")
+titleCorner.CornerRadius = UDim.new(0, 12)
+titleCorner.Parent = titleBar
+
+local titleCover = Instance.new("Frame")
+titleCover.Size = UDim2.new(1, 0, 0, 14)
+titleCover.Position = UDim2.new(0, 0, 1, -14)
+titleCover.BackgroundColor3 = Color3.fromRGB(15, 30, 60)
+titleCover.BorderSizePixel = 0
+titleCover.ZIndex = 11
+titleCover.Parent = titleBar
+
+local titleIcon = Instance.new("TextLabel")
+titleIcon.Size = UDim2.new(0, 24, 0, 24)
+titleIcon.Position = UDim2.new(0, 8, 0.5, -12)
+titleIcon.BackgroundTransparency = 1
+titleIcon.Text = "🔄"
+titleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleIcon.TextSize = 20
+titleIcon.Font = Enum.Font.GothamBlack
+titleIcon.ZIndex = 13
+titleIcon.Parent = titleBar
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, -70, 1, 0)
+titleLabel.Position = UDim2.new(0, 38, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "FIX HUB"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextSize = 13
+titleLabel.Font = Enum.Font.GothamBlack
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.ZIndex = 12
+titleLabel.Parent = titleBar
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 24, 0, 24)
+closeBtn.Position = UDim2.new(1, -30, 0.5, -12)
+closeBtn.BackgroundColor3 = Color3.fromRGB(220, 40, 40)
+closeBtn.Text = "X"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.TextSize = 13
+closeBtn.Font = Enum.Font.GothamBlack
+closeBtn.BorderSizePixel = 0
+closeBtn.ZIndex = 13
+closeBtn.Parent = titleBar
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = closeBtn
+
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Size = UDim2.new(1, -24, 0, 18)
+statusLabel.Position = UDim2.new(0, 12, 0, 42)
+statusLabel.BackgroundTransparency = 1
+statusLabel.Text = "● Pronto"
+statusLabel.TextColor3 = Color3.fromRGB(150, 220, 150)
+statusLabel.TextSize = 11
+statusLabel.Font = Enum.Font.GothamBold
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+statusLabel.ZIndex = 12
+statusLabel.Parent = mainFrame
+
+local listFrame = Instance.new("Frame")
+listFrame.Size = UDim2.new(1, -24, 0, 175)
+listFrame.Position = UDim2.new(0, 12, 0, 66)
+listFrame.BackgroundColor3 = Color3.fromRGB(12, 18, 35)
+listFrame.BorderSizePixel = 0
+listFrame.ZIndex = 12
+listFrame.Parent = mainFrame
+
+local listCorner = Instance.new("UICorner")
+listCorner.CornerRadius = UDim.new(0, 8)
+listCorner.Parent = listFrame
+
+local listStroke = Instance.new("UIStroke")
+listStroke.Color = Color3.fromRGB(40, 70, 130)
+listStroke.Thickness = 1
+listStroke.Transparency = 0.4
+listStroke.Parent = listFrame
+
+local scroll = Instance.new("ScrollingFrame")
+scroll.Size = UDim2.new(1, -8, 1, -8)
+scroll.Position = UDim2.new(0, 4, 0, 4)
+scroll.BackgroundTransparency = 1
+scroll.BorderSizePixel = 0
+scroll.ScrollBarThickness = 4
+scroll.ScrollBarImageColor3 = Color3.fromRGB(80, 160, 255)
+scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scroll.ZIndex = 13
+scroll.Parent = listFrame
+
+local listLayout = Instance.new("UIListLayout")
+listLayout.Padding = UDim.new(0, 4)
+listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+listLayout.Parent = scroll
+
+local selectAllBtn = Instance.new("TextButton")
+selectAllBtn.Size = UDim2.new(0, 105, 0, 26)
+selectAllBtn.Position = UDim2.new(0, 12, 0, 249)
+selectAllBtn.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+selectAllBtn.Text = "SELECT ALL"
+selectAllBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+selectAllBtn.TextSize = 10
+selectAllBtn.Font = Enum.Font.GothamBlack
+selectAllBtn.BorderSizePixel = 0
+selectAllBtn.ZIndex = 12
+selectAllBtn.Parent = mainFrame
+
+local selectAllCorner = Instance.new("UICorner")
+selectAllCorner.CornerRadius = UDim.new(0, 6)
+selectAllCorner.Parent = selectAllBtn
+
+local deselectAllBtn = Instance.new("TextButton")
+deselectAllBtn.Size = UDim2.new(0, 105, 0, 26)
+deselectAllBtn.Position = UDim2.new(1, -117, 0, 249)
+deselectAllBtn.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+deselectAllBtn.Text = "DESELECT"
+deselectAllBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+deselectAllBtn.TextSize = 10
+deselectAllBtn.Font = Enum.Font.GothamBlack
+deselectAllBtn.BorderSizePixel = 0
+deselectAllBtn.ZIndex = 12
+deselectAllBtn.Parent = mainFrame
+
+local deselectAllCorner = Instance.new("UICorner")
+deselectAllCorner.CornerRadius = UDim.new(0, 6)
+deselectAllCorner.Parent = deselectAllBtn
+
+local toggleBtn = Instance.new("TextButton")
+toggleBtn.Size = UDim2.new(1, -24, 0, 42)
+toggleBtn.Position = UDim2.new(0, 12, 0, 284)
+toggleBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+toggleBtn.Text = "FLING: OFF"
+toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleBtn.TextSize = 15
+toggleBtn.Font = Enum.Font.GothamBlack
+toggleBtn.BorderSizePixel = 0
+toggleBtn.ZIndex = 12
+toggleBtn.Parent = mainFrame
+
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius = UDim.new(0, 8)
+toggleCorner.Parent = toggleBtn
+
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Color = Color3.fromRGB(255, 100, 100)
+toggleStroke.Thickness = 1.5
+toggleStroke.Transparency = 0.3
+toggleStroke.Parent = toggleBtn
+
+local SelectedTargets = {}
+local PlayerCheckboxes = {}
+local FlingActive = false
+getgenv().OldPos = nil
+getgenv().FPDH = workspace.FallenPartsDestroyHeight
+
+local function setStatus(text, color)
+    statusLabel.Text = "● " .. text
+    statusLabel.TextColor3 = color or Color3.fromRGB(150, 220, 150)
+end
+
+local function RefreshPlayerList()
+    for _, child in pairs(scroll:GetChildren()) do
+        if child:IsA("Frame") then
+            child:Destroy()
+        end
+    end
+    PlayerCheckboxes = {}
+
+    local PlayerList = Players:GetPlayers()
+    table.sort(PlayerList, function(a, b) return a.Name:lower() < b.Name:lower() end)
+
+    local yPos = 0
+    for _, player in ipairs(PlayerList) do
+        if player ~= LocalPlayer then
+            local entry = Instance.new("Frame")
+            entry.Size = UDim2.new(1, -4, 0, 36)
+            entry.Position = UDim2.new(0, 0, 0, yPos)
+            entry.BackgroundColor3 = Color3.fromRGB(20, 30, 55)
+            entry.BorderSizePixel = 0
+            entry.ZIndex = 13
+            entry.Parent = scroll
+
+            local entryCorner = Instance.new("UICorner")
+            entryCorner.CornerRadius = UDim.new(0, 6)
+            entryCorner.Parent = entry
+
+            local avatar = Instance.new("ImageLabel")
+            avatar.Size = UDim2.new(0, 28, 0, 28)
+            avatar.Position = UDim2.new(0, 4, 0.5, -14)
+            avatar.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+            avatar.BorderSizePixel = 0
+            avatar.Image = "rbxthumb://type=AvatarHeadShot&id=" .. player.UserId .. "&w=150&h=150"
+            avatar.ZIndex = 14
+            avatar.Parent = entry
+
+            local avatarCorner = Instance.new("UICorner")
+            avatarCorner.CornerRadius = UDim.new(1, 0)
+            avatarCorner.Parent = avatar
+
+            local avatarStroke = Instance.new("UIStroke")
+            avatarStroke.Color = Color3.fromRGB(80, 160, 255)
+            avatarStroke.Thickness = 1
+            avatarStroke.Parent = avatar
+
+            local nameLabel = Instance.new("TextLabel")
+            nameLabel.Size = UDim2.new(1, -75, 1, 0)
+            nameLabel.Position = UDim2.new(0, 38, 0, 0)
+            nameLabel.BackgroundTransparency = 1
+            nameLabel.Text = player.Name
+            nameLabel.TextColor3 = Color3.fromRGB(230, 230, 230)
+            nameLabel.TextSize = 11
+            nameLabel.Font = Enum.Font.GothamSemibold
+            nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+            nameLabel.TextTruncate = Enum.TextTruncate.AtEnd
+            nameLabel.ZIndex = 14
+            nameLabel.Parent = entry
+
+            local checkbox = Instance.new("TextButton")
+            checkbox.Size = UDim2.new(0, 22, 0, 22)
+            checkbox.Position = UDim2.new(1, -26, 0.5, -11)
+            checkbox.BackgroundColor3 = Color3.fromRGB(30, 50, 90)
+            checkbox.Text = ""
+            checkbox.BorderSizePixel = 0
+            checkbox.ZIndex = 14
+            checkbox.Parent = entry
+
+            local cbCorner = Instance.new("UICorner")
+            cbCorner.CornerRadius = UDim.new(0, 5)
+            cbCorner.Parent = checkbox
+
+            local cbStroke = Instance.new("UIStroke")
+            cbStroke.Color = Color3.fromRGB(80, 160, 255)
+            cbStroke.Thickness = 1
+            cbStroke.Parent = checkbox
+
+            local checkmark = Instance.new("TextLabel")
+            checkmark.Size = UDim2.new(1, 0, 1, 0)
+            checkmark.BackgroundTransparency = 1
+            checkmark.Text = "✓"
+            checkmark.TextColor3 = Color3.fromRGB(80, 200, 255)
+            checkmark.TextSize = 16
+            checkmark.Font = Enum.Font.GothamBlack
+            checkmark.Visible = SelectedTargets[player.Name] ~= nil
+            checkmark.ZIndex = 15
+            checkmark.Parent = checkbox
+
+            local clickArea = Instance.new("TextButton")
+            clickArea.Size = UDim2.new(1, 0, 1, 0)
+            clickArea.BackgroundTransparency = 1
+            clickArea.Text = ""
+            clickArea.ZIndex = 16
+            clickArea.Parent = entry
+
+            clickArea.MouseButton1Click:Connect(function()
+                if SelectedTargets[player.Name] then
+                    SelectedTargets[player.Name] = nil
+                    checkmark.Visible = false
+                else
+                    SelectedTargets[player.Name] = player
+                    checkmark.Visible = true
+                end
+                local count = 0
+                for _ in pairs(SelectedTargets) do count = count + 1 end
+                if not FlingActive then
+                    setStatus(count .. " selecionado(s)", Color3.fromRGB(80, 200, 255))
+                end
+            end)
+
+            PlayerCheckboxes[player.Name] = {
+                Entry = entry,
+                Checkmark = checkmark
+            }
+
+            yPos = yPos + 40
+        end
+    end
+end
+
+local function CountSelected()
+    local c = 0
+    for _ in pairs(SelectedTargets) do c = c + 1 end
+    return c
+end
+
+local function ToggleAll(select)
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            local data = PlayerCheckboxes[player.Name]
+            if data then
+                if select then
+                    SelectedTargets[player.Name] = player
+                    data.Checkmark.Visible = true
+                else
+                    SelectedTargets[player.Name] = nil
+                    data.Checkmark.Visible = false
+                end
+            end
+        end
+    end
+    if not FlingActive then
+        setStatus(CountSelected() .. " selecionado(s)", Color3.fromRGB(80, 200, 255))
+    end
+end
+
+local function SkidFling(TargetPlayer)
+    local Character = LocalPlayer.Character
+    local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+    local RootPart = Humanoid and Humanoid.RootPart
+    local TCharacter = TargetPlayer.Character
+    if not TCharacter then return end
+
+    local THumanoid, TRootPart, THead, Accessory, Handle
+    if TCharacter:FindFirstChildOfClass("Humanoid") then
+        THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+    end
+    if THumanoid and THumanoid.RootPart then
+        TRootPart = THumanoid.RootPart
+    end
+    if TCharacter:FindFirstChild("Head") then
+        THead = TCharacter.Head
+    end
+    if TCharacter:FindFirstChildOfClass("Accessory") then
+        Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+    end
+    if Accessory and Accessory:FindFirstChild("Handle") then
+        Handle = Accessory.Handle
+    end
+
+    if not (Character and Humanoid and RootPart) then return end
+
+    if RootPart.Velocity.Magnitude < 50 then
+        getgenv().OldPos = RootPart.CFrame
+    end
+
+    if THumanoid and THumanoid.Sit then return end
+
+    if THead then
+        workspace.CurrentCamera.CameraSubject = THead
+    elseif Handle then
+        workspace.CurrentCamera.CameraSubject = Handle
+    elseif THumanoid and TRootPart then
+        workspace.CurrentCamera.CameraSubject = THumanoid
+    end
+
+    if not TCharacter:FindFirstChildWhichIsA("BasePart") then return end
+
+    local FPos = function(BasePart, Pos, Ang)
+        RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+        Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+        RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+        RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+    end
+
+    local SFBasePart = function(BasePart)
+        local TimeToWait = 2
+        local Time = tick()
+        local Angle = 0
+        repeat
+            if not FlingActive then break end
+            if RootPart and THumanoid then
+                if BasePart.Velocity.Magnitude < 50 then
+                    Angle = Angle + 100
+                    FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection, CFrame.Angles(math.rad(Angle), 0, 0))
+                    task.wait()
+                else
+                    FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+                    task.wait()
+                    FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+                    task.wait()
+                end
+            end
+        until Time + TimeToWait < tick() or not FlingActive
+    end
+
+    workspace.FallenPartsDestroyHeight = 0 / 0
+
+    local BV = Instance.new("BodyVelocity")
+    BV.Parent = RootPart
+    BV.Velocity = Vector3.new(0, 0, 0)
+    BV.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+
+    Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+
+    if TRootPart then
+        SFBasePart(TRootPart)
+    elseif THead then
+        SFBasePart(THead)
+    elseif Handle then
+        SFBasePart(Handle)
+    end
+
+    BV:Destroy()
+    Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+    workspace.CurrentCamera.CameraSubject = Humanoid
+
+    if getgenv().OldPos then
+        local tries = 0
+        repeat
+            if not Character or not Character.Parent then break end
+            local curRoot = Character:FindFirstChild("HumanoidRootPart")
+            if not curRoot then break end
+            curRoot.CFrame = getgenv().OldPos * CFrame.new(0, 0.5, 0)
+            Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, 0.5, 0))
+            Humanoid:ChangeState("GettingUp")
+            for _, part in pairs(Character:GetChildren()) do
+                if part:IsA("BasePart") then
+                    part.Velocity = Vector3.new()
+                    part.RotVelocity = Vector3.new()
+                end
+            end
+            tries = tries + 1
+            task.wait()
+        until (curRoot.Position - getgenv().OldPos.p).Magnitude < 25 or tries > 40
+        workspace.FallenPartsDestroyHeight = getgenv().FPDH
+    end
+end
+
+local function updateToggleBtn()
+    if FlingActive then
+        toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 180, 90)
+        toggleBtn.Text = "FLING: ON"
+        toggleStroke.Color = Color3.fromRGB(80, 220, 130)
+    else
+        toggleBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+        toggleBtn.Text = "FLING: OFF"
+        toggleStroke.Color = Color3.fromRGB(255, 100, 100)
+    end
+end
+
+local function StartFling()
+    if FlingActive then return end
+    if CountSelected() == 0 then
+        setStatus("Nada selecionado!", Color3.fromRGB(255, 100, 100))
+        task.wait(1.5)
+        setStatus("Pronto", Color3.fromRGB(150, 220, 150))
+        return
+    end
+
+    FlingActive = true
+    updateToggleBtn()
+    setStatus("FLING ATIVO (" .. CountSelected() .. ")", Color3.fromRGB(255, 100, 100))
+
+    task.spawn(function()
+        while FlingActive do
+            local validTargets = {}
+            for name, player in pairs(SelectedTargets) do
+                if player and player.Parent then
+                    validTargets[name] = player
+                else
+                    SelectedTargets[name] = nil
+                    local cb = 
