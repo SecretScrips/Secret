@@ -1,0 +1,430 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "FixHub"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+gui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
+
+local COR_ACCENT = Color3.fromRGB(90, 170, 255)
+local COR_BG = Color3.fromRGB(18, 18, 22)
+local COR_PANEL = Color3.fromRGB(26, 26, 32)
+local COR_TEXT = Color3.fromRGB(240, 240, 245)
+local COR_SUB = Color3.fromRGB(150, 150, 165)
+
+local function makeRound(obj, r)
+    local c = Instance.new("UICorner")
+    c.CornerRadius = UDim.new(0, r or 10)
+    c.Parent = obj
+    return c
+end
+
+local function makeStroke(obj, cor, esp)
+    local s = Instance.new("UIStroke")
+    s.Color = cor or COR_ACCENT
+    s.Thickness = esp or 1.5
+    s.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    s.Parent = obj
+    return s
+end
+
+local botao = Instance.new("TextButton")
+botao.Size = UDim2.new(0, 58, 0, 58)
+botao.Position = UDim2.new(1, -78, 0.55, 0)
+botao.AnchorPoint = Vector2.new(0.5, 0.5)
+botao.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+botao.Text = ""
+botao.AutoButtonColor = false
+botao.ZIndex = 10
+botao.Parent = gui
+makeRound(botao, 29)
+
+local bordaBola = Instance.new("UIStroke")
+bordaBola.Color = Color3.fromRGB(255, 255, 255)
+bordaBola.Thickness = 3
+bordaBola.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+bordaBola.Parent = botao
+
+local gradBorda = Instance.new("UIGradient")
+gradBorda.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.45, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(0.55, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+})
+gradBorda.Parent = bordaBola
+
+task.spawn(function()
+    while botao.Parent do
+        gradBorda.Rotation = (gradBorda.Rotation + 4) % 360
+        task.wait(0.03)
+    end
+end)
+
+local icone = Instance.new("TextLabel")
+icone.Size = UDim2.new(1, 0, 1, 0)
+icone.BackgroundTransparency = 1
+icone.Text = "🔃"
+icone.TextColor3 = Color3.fromRGB(255, 255, 255)
+icone.Font = Enum.Font.GothamBold
+icone.TextSize = 26
+icone.ZIndex = 11
+icone.Parent = botao
+
+local spinning = false
+local spin = 0
+
+RunService.RenderStepped:Connect(function(dt)
+    if spinning then
+        spin = spin + dt * 500
+        if spin >= 360 then spin = spin - 360 end
+        icone.Rotation = spin
+    end
+end)
+
+botao.MouseEnter:Connect(function()
+    TweenService:Create(botao, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(30, 35, 50)}):Play()
+end)
+botao.MouseLeave:Connect(function()
+    TweenService:Create(botao, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(15, 15, 20)}):Play()
+end)
+
+local painel = Instance.new("Frame")
+painel.Size = UDim2.new(0, 270, 0, 330)
+painel.Position = UDim2.new(1, 290, 0, 90)
+painel.BackgroundColor3 = COR_BG
+painel.BorderSizePixel = 0
+painel.Visible = false
+painel.Active = true
+painel.ZIndex = 20
+painel.Parent = gui
+makeRound(painel, 14)
+
+local bordaPainel = Instance.new("UIStroke")
+bordaPainel.Color = Color3.fromRGB(255, 255, 255)
+bordaPainel.Thickness = 2
+bordaPainel.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+bordaPainel.Parent = painel
+
+local gradPainel = Instance.new("UIGradient")
+gradPainel.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(0.33, Color3.fromRGB(90, 170, 255)),
+    ColorSequenceKeypoint.new(0.66, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 170, 255)),
+})
+gradPainel.Parent = bordaPainel
+
+task.spawn(function()
+    while painel.Parent do
+        gradPainel.Rotation = (gradPainel.Rotation + 1.5) % 360
+        task.wait(0.03)
+    end
+end)
+
+local topBar = Instance.new("Frame")
+topBar.Size = UDim2.new(1, 0, 0, 54)
+topBar.BackgroundColor3 = COR_PANEL
+topBar.BorderSizePixel = 0
+topBar.ZIndex = 21
+topBar.Parent = painel
+makeRound(topBar, 14)
+local fixTop = Instance.new("Frame")
+fixTop.Size = UDim2.new(1, 0, 0, 20)
+fixTop.Position = UDim2.new(0, 0, 1, -20)
+fixTop.BackgroundColor3 = COR_PANEL
+fixTop.BorderSizePixel = 0
+fixTop.ZIndex = 21
+fixTop.Parent = topBar
+
+local logo = Instance.new("TextLabel")
+logo.Size = UDim2.new(1, -20, 0, 26)
+logo.Position = UDim2.new(0, 14, 0, 6)
+logo.BackgroundTransparency = 1
+logo.Text = "FIX HUB"
+logo.TextColor3 = Color3.new(1, 1, 1)
+logo.Font = Enum.Font.GothamBlack
+logo.TextSize = 18
+logo.TextXAlignment = Enum.TextXAlignment.Left
+logo.ZIndex = 22
+logo.Parent = topBar
+
+local subtitulo = Instance.new("TextLabel")
+subtitulo.Size = UDim2.new(1, -20, 0, 14)
+subtitulo.Position = UDim2.new(0, 14, 0, 30)
+subtitulo.BackgroundTransparency = 1
+subtitulo.Text = "Auto Wood System"
+subtitulo.TextColor3 = Color3.fromRGB(200, 200, 220)
+subtitulo.Font = Enum.Font.GothamMedium
+subtitulo.TextSize = 10
+subtitulo.TextXAlignment = Enum.TextXAlignment.Left
+subtitulo.ZIndex = 22
+subtitulo.Parent = topBar
+
+local fechar = Instance.new("TextButton")
+fechar.Size = UDim2.new(0, 28, 0, 28)
+fechar.Position = UDim2.new(1, -38, 0, 13)
+fechar.BackgroundColor3 = Color3.fromRGB(255, 70, 70)
+fechar.Text = "×"
+fechar.TextColor3 = Color3.new(1, 1, 1)
+fechar.Font = Enum.Font.GothamBold
+fechar.TextSize = 18
+fechar.AutoButtonColor = false
+fechar.ZIndex = 22
+fechar.Parent = topBar
+makeRound(fechar, 14)
+
+local conteudo = Instance.new("ScrollingFrame")
+conteudo.Size = UDim2.new(1, -18, 1, -72)
+conteudo.Position = UDim2.new(0, 9, 0, 62)
+conteudo.BackgroundTransparency = 1
+conteudo.BorderSizePixel = 0
+conteudo.ScrollBarThickness = 3
+conteudo.ScrollBarImageColor3 = COR_ACCENT
+conteudo.CanvasSize = UDim2.new(0, 0, 0, 260)
+conteudo.ZIndex = 21
+conteudo.Parent = painel
+
+local function fazerSecao(nome, y)
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1, -10, 0, 18)
+    lbl.Position = UDim2.new(0, 5, 0, y)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = nome
+    lbl.TextColor3 = COR_ACCENT
+    lbl.Font = Enum.Font.GothamBold
+    lbl.TextSize = 11
+    lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.ZIndex = 22
+    lbl.Parent = conteudo
+end
+
+local function fazerBotao(texto, y)
+    local b = Instance.new("TextButton")
+    b.Size = UDim2.new(1, -10, 0, 46)
+    b.Position = UDim2.new(0, 5, 0, y)
+    b.BackgroundColor3 = COR_PANEL
+    b.Text = texto
+    b.TextColor3 = COR_TEXT
+    b.Font = Enum.Font.GothamSemibold
+    b.TextSize = 13
+    b.AutoButtonColor = false
+    b.ZIndex = 22
+    b.Parent = conteudo
+    makeRound(b, 10)
+    makeStroke(b, Color3.fromRGB(60, 60, 80), 1)
+    return b
+end
+
+fazerSecao("CONTROLS", 5)
+local salvar = fazerBotao("📍  Save Current Position", 26)
+local auto = fazerBotao("🪵  Auto Wood: OFF", 80)
+
+fazerSecao("STATUS", 135)
+local status = Instance.new("TextLabel")
+status.Size = UDim2.new(1, -10, 0, 90)
+status.Position = UDim2.new(0, 5, 0, 158)
+status.BackgroundColor3 = COR_PANEL
+status.Text = "⚠  No position saved yet"
+status.TextColor3 = COR_SUB
+status.Font = Enum.Font.GothamMedium
+status.TextSize = 12
+status.TextWrapped = true
+status.TextYAlignment = Enum.TextYAlignment.Top
+status.ZIndex = 22
+status.Parent = conteudo
+makeRound(status, 10)
+makeStroke(status, Color3.fromRGB(60, 60, 80), 1)
+
+local aberto = false
+
+local function abrirPainel()
+    if aberto then return end
+    aberto = true
+    spinning = true
+    painel.Visible = true
+    painel.Position = UDim2.new(1, 290, 0, 90)
+    painel.BackgroundTransparency = 1
+    TweenService:Create(painel, TweenInfo.new(1.1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+        Position = UDim2.new(1, -260, 0, 90),
+        BackgroundTransparency = 0
+    }):Play()
+    task.delay(1.6, function() spinning = false end)
+end
+
+local function fecharPainel()
+    if not aberto then return end
+    aberto = false
+    spinning = true
+    TweenService:Create(painel, TweenInfo.new(0.9, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {
+        Position = UDim2.new(1, 290, 0, 90),
+        BackgroundTransparency = 1
+    }):Play()
+    task.delay(0.9, function()
+        painel.Visible = false
+        spinning = false
+    end)
+end
+
+botao.MouseButton1Click:Connect(function()
+    if aberto then fecharPainel() else abrirPainel() end
+end)
+fechar.MouseButton1Click:Connect(fecharPainel)
+
+local dragging, dragInput, dragStart, startPos
+topBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = painel.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then dragging = false end
+        end)
+    end
+end)
+topBar.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+UIS.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        painel.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+local autoLigado = false
+local posicaoSalva = nil
+local loopThread = nil
+local jaTeleportados = setmetatable({}, {__mode = "k"})
+
+local function atualizarStatus()
+    if posicaoSalva then
+        status.Text = string.format(
+            "✅  DESTINATION SAVED\n\nX: %.0f\nY: %.0f\nZ: %.0f",
+            posicaoSalva.X, posicaoSalva.Y, posicaoSalva.Z
+        )
+        status.TextColor3 = Color3.fromRGB(130, 230, 130)
+    else
+        status.Text = "⚠  No position saved yet.\n\nPress 'Save Current Position' first."
+        status.TextColor3 = COR_SUB
+    end
+end
+
+local function ehLog(obj)
+    if not obj or not obj.Parent then return false end
+    if not obj:IsA("BasePart") then return false end
+    if obj.Anchored then return false end
+    local nome = string.lower(obj.Name)
+    return nome:find("log") ~= nil
+end
+
+local function teleportarLog(log)
+    pcall(function() log:SetNetworkOwner(player) end)
+    pcall(function() log.CFrame = CFrame.new(posicaoSalva) end)
+    pcall(function()
+        log.AssemblyLinearVelocity = Vector3.zero
+        log.AssemblyAngularVelocity = Vector3.zero
+    end)
+end
+
+local function iniciarLoop()
+    if loopThread then return end
+    loopThread = task.spawn(function()
+        while autoLigado do
+            if posicaoSalva then
+                for _, obj in ipairs(workspace:GetDescendants()) do
+                    if not autoLigado then break end
+                    if ehLog(obj) and not jaTeleportados[obj] then
+                        jaTeleportados[obj] = true
+                        teleportarLog(obj)
+                    end
+                end
+            end
+            task.wait(0.25)
+        end
+        loopThread = nil
+    end)
+end
+
+local function pararLoop()
+    autoLigado = false
+    loopThread = nil
+end
+
+salvar.MouseButton1Click:Connect(function()
+    local char = player.Character
+    if not char then return end
+    local root = char:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+    posicaoSalva = root.Position
+    atualizarStatus()
+    salvar.Text = "✅  Position Saved!"
+    TweenService:Create(salvar, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(50, 160, 80)}):Play()
+    task.wait(1.2)
+    salvar.Text = "📍  Save Current Position"
+    TweenService:Create(salvar, TweenInfo.new(0.3), {BackgroundColor3 = COR_PANEL}):Play()
+end)
+
+auto.MouseButton1Click:Connect(function()
+    if not posicaoSalva then
+        status.Text = "❌  Save a position first!"
+        status.TextColor3 = Color3.fromRGB(230, 80, 80)
+        return
+    end
+    autoLigado = not autoLigado
+    if autoLigado then
+        auto.Text = "🪵  Auto Wood: ON"
+        TweenService:Create(auto, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(50, 160, 80)}):Play()
+        jaTeleportados = setmetatable({}, {__mode = "k"})
+        iniciarLoop()
+    else
+        auto.Text = "🪵  Auto Wood: OFF"
+        TweenService:Create(auto, TweenInfo.new(0.2), {BackgroundColor3 = COR_PANEL}):Play()
+        pararLoop()
+    end
+end)
+
+auto.MouseEnter:Connect(function()
+    if not autoLigado then
+        TweenService:Create(auto, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(40, 40, 55)}):Play()
+    end
+end)
+auto.MouseLeave:Connect(function()
+    if not autoLigado then
+        TweenService:Create(auto, TweenInfo.new(0.15), {BackgroundColor3 = COR_PANEL}):Play()
+    end
+end)
+
+salvar.MouseEnter:Connect(function()
+    TweenService:Create(salvar, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(40, 40, 55)}):Play()
+end)
+salvar.MouseLeave:Connect(function()
+    TweenService:Create(salvar, TweenInfo.new(0.15), {BackgroundColor3 = COR_PANEL}):Play()
+end)
+
+fechar.MouseEnter:Connect(function()
+    TweenService:Create(fechar, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(255, 100, 100)}):Play()
+end)
+fechar.MouseLeave:Connect(function()
+    TweenService:Create(fechar, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(255, 70, 70)}):Play()
+end)
+
+player.CharacterAdded:Connect(function()
+    if autoLigado then
+        pararLoop()
+        autoLigado = false
+        auto.Text = "🪵  Auto Wood: OFF"
+        auto.BackgroundColor3 = COR_PANEL
+    end
+end)
+
+atualizarStatus()
+print("[FIX HUB] Loaded!")
